@@ -35,7 +35,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
     const [show_name_history, set_name_history] = React.useState(false);
     const [showing_references, set_showing_references] = React.useState(false);
     const [showing_xrefs, set_showing_xrefs] = React.useState(false);
-    const [show_xrefs_history, set_xrefs_history] = React.useState(false);
+
     const [showing_description_references, set_showing_description_references] = React.useState(false);
     const [show_description_history, set_description_history] = React.useState(false);
 
@@ -61,6 +61,9 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
         setAppendedContentState({type: AppendedContentActionTypes.appendToSynonyms, nextSynonym: ''})
         set_editing_synonyms(true)
     }
+
+    const [show_xrefs_history, set_xrefs_history] = React.useState(false);
+
     const edit_xrefs = async () => {
         let xref: Maybe<XRef> = {id:'',source:'',sourceId:''}
         setAppendedContentState({type: AppendedContentActionTypes.appendToXRefs, nextXRef: xref })
@@ -191,6 +194,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                             <div>{data.OntologicalDisease[0].synonyms.stringList.join(',')}</div> }
                         {editing_synonyms ?
                             (
+
                                 <span></span>
 
                             ) :
@@ -246,7 +250,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                         ) :
 
                         (<div className="form-group">
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_xrefs(true)}>Edit XRefs</button>
+                                <button className="btn btn-primary my-1" onClick={() => edit_xrefs()}>Edit XRefs</button>
                                 <button className="btn btn-primary my-1" onClick={() => set_xrefs_history(!show_xrefs_history)}>
                                     {show_xrefs_history ? <span>Hide History</span> : <span>Show History</span>}
                                 </button>

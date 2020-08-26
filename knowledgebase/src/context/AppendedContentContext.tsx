@@ -24,7 +24,7 @@ export type AppendedContentActions =
 }
     | {
     type: AppendedContentActionTypes.appendToXRefs;
-    nextXRef: XRef;
+    nextXRef: Maybe<XRef>;
 
 }
     | {

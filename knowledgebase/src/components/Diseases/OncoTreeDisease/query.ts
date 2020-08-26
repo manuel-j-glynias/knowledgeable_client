@@ -9,6 +9,12 @@ export const QUERY_OntolgicalDisease = gql`
             mainType {
                 statement
             }
+            xrefs {
+                list {
+                    source
+                    sourceId
+                }
+            }
             tissue {
                 statement
             }

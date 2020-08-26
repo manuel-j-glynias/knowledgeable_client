@@ -14,11 +14,12 @@ export interface Props {
     data: OntologicalDiseaseComponentsQuery;
     editing_description: boolean;
     editing_synonyms: boolean;
+    editing_xrefs: boolean;
 }
 
 const ContentContainer: React.FC<Props> = ({
                                                data,
-                                               editing_synonyms,editing_description
+                                               editing_synonyms,editing_description,editing_xrefs
                                            }) => {
 
     const [show_DODisease, set_show_DODisease] = React.useState(false);
@@ -60,7 +61,7 @@ const ContentContainer: React.FC<Props> = ({
                         data.OntologicalDisease[0].doDiseases.list.map((item,
                                                                         index) =>
                             (
-                                <div key={index}> {item ?  <DODiseaseContainer id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>: ''}</div>
+                                <div key={index}> {item ?  <DODiseaseContainer id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms} editing_xrefs={editing_xrefs} />: ''}</div>
 
                             )) : <span>None</span>}</div>
                 </div> : (<span></span>)
@@ -73,7 +74,7 @@ const ContentContainer: React.FC<Props> = ({
                         data.OntologicalDisease[0].goDiseases.list.map((item,
                                                                          index) =>
                             (
-                                <div key={index}> {item ?  <GoDiseaseContainer id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>: ''}</div>
+                                <div key={index}> {item ?  <GoDiseaseContainer id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms} editing_xrefs={editing_xrefs} />: ''}</div>
 
                             )) : <span>None</span>}</div>
                 </div> : (<span></span>)
@@ -99,7 +100,7 @@ const ContentContainer: React.FC<Props> = ({
                         data.OntologicalDisease[0].oncoTreeDiseases .list.map((item,
                                                                          index) =>
                             (
-                                <div key={index}> {item ?  <OncoTreeDiseaseContainer  id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>: ''}</div>
+                                <div key={index}> {item ?  <OncoTreeDiseaseContainer  id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms} editing_xrefs={editing_xrefs} />: ''}</div>
 
                             )) : <span>None</span>}</div>
                 </div> : (<span></span>)

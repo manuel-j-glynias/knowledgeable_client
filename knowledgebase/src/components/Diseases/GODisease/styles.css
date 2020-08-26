@@ -9,6 +9,7 @@
 }
 
 
+
 .GODisease__title {
     margin-top: 20px;
     margin-bottom: 4px;
@@ -70,3 +71,10 @@
     grid-template-columns: 300px 100px;
     align-items: flex-start;
 }
+
+.GODisease__XRef_Wrapper {
+    display: grid;
+    grid-template-columns: 200px 160px 100px;
+    align-items: flex-start;
+}
+

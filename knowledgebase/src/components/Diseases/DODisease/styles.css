@@ -70,3 +70,9 @@
     grid-template-columns: 300px 100px;
     align-items: flex-start;
 }
+
+.DODisease__XRef_Wrapper {
+    display: grid;
+    grid-template-columns: 200px 160px 100px;
+    align-items: flex-start;
+}

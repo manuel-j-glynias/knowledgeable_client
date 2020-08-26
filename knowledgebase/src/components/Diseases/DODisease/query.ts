@@ -22,6 +22,12 @@ export const QUERY_OntolgicalDisease = gql`
             subsets {
                 stringList
             }
+            xrefs {
+                list {
+                    source
+                    sourceId
+                }
+            }
             parents {
                 name {
                     statement

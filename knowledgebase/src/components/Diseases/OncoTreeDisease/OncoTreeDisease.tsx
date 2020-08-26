@@ -1,19 +1,21 @@
 import * as React from 'react';
-import {EditableStatement, OncoTreeDiseaseQuery, Maybe} from '../../../generated/graphql';
+import {EditableStatement, OncoTreeDiseaseQuery, Maybe, XRef} from '../../../generated/graphql';
 import './styles.css';
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
+import {Fragment} from "react";
 
 
 interface Props {
     data: OncoTreeDiseaseQuery;
     editing_description: boolean;
     editing_synonyms: boolean;
+    editing_xrefs: boolean;
 }
 
 const className = 'OncoTreeDisease';
 
 
-const OncoTreeDisease: React.FC<Props> = ({data,editing_description, editing_synonyms}) => {
+const OncoTreeDisease: React.FC<Props> = ({data,editing_description, editing_synonyms, editing_xrefs}) => {
     const [editing_name, set_editing_name] = React.useState(false);
     const {
         AppendedContentState: {},
@@ -51,6 +53,21 @@ const OncoTreeDisease: React.FC<Props> = ({data,editing_description, editing_syn
         setAppendedContentState({type: AppendedContentActionTypes.appendToSynonyms, nextSynonym: text})
         // handle_append_to_description('appended stuff')
     };
+
+    const copy_xref = async (xref: any) => {
+        // console.log('copy_description')
+        let text: XRef = {id:'',source:'',sourceId:''}
+
+        if (xref !== null) {
+            text = xref
+        }
+        setAppendedContentState({type: AppendedContentActionTypes.appendToXRefs, nextXRef: text})
+        // handle_append_to_description('appended stuff')
+    };
+
+
+
+
     if (!data.OncoTreeDisease) {
         return <div>No Selected OntologicalDisease</div>;
     }
@@ -79,6 +96,23 @@ const OncoTreeDisease: React.FC<Props> = ({data,editing_description, editing_syn
                         ) :
                         (<span></span>)}</div>
 
+
+                <div> XRefs: </div>
+                <div className={`${className}__XRef_Wrapper`}>
+                    <Fragment>
+                        <div className="header">Source</div>
+                        <div className="header">SourceId</div>
+                        <div></div>
+                    </Fragment>
+                    {data.OncoTreeDisease[0].xrefs.list.map((item, index) => (
+                            <Fragment key={index}>
+                                <div>{item!.source}</div>
+                                <div>{item!.sourceId}</div>
+                                <div>{editing_xrefs ? (<button className={`${className}__small-btn`} onClick={() => copy_xref(item)}>Copy XRef </button>) : (<span></span>)}</div>
+                            </Fragment>
+                    ))}
+
+                </div>
 
                 <div>Children:</div>
 
